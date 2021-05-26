@@ -63,10 +63,9 @@ public class MergeSort {
     public static void main(String[] args) {
 //       int[] arr = new int[]{3,14,1,45,2,7,5,8,10,41,22};
        int[] arr= new int[]{26, 5, 98, 108, 28, 99, 100, 56, 34, 1 };
-       SortUtil.swapArrayElement(arr, 1,2);
-        SortUtil.printArray(arr);
-         mergeSort(arr);
 
-        SortUtil.printArray(arr);
+       mergeSort(arr);
+
+       SortUtil.printArray(arr);
     }
 }
