@@ -39,7 +39,7 @@ public class KthLargestElementInArray {
     }
 
     public static void main(String[] args) {
-        int[] arr= new int[]{6,5,8,7,4,3,9 };
+        int[] arr= new int[]{6,5,8,7,4,3,9};
         KthLargestElementInArray qs = new KthLargestElementInArray();
 
        int a= qs.qSort(arr,0,arr.length-1,3);

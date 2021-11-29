@@ -2,6 +2,7 @@ package leetcode;
 
 import dataStructure.ListNode;
 
+
 public class L19RemoveNthNodeFromEndOfList {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if(head == null)return head;
@@ -10,6 +11,7 @@ public class L19RemoveNthNodeFromEndOfList {
             runner=runner.next;
             n--;
         }
+
         if(runner==null)return head.next;
         while(runner.next!=null) {
             runner = runner.next;

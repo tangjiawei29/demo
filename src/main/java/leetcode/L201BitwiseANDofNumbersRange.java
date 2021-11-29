@@ -1,2 +1,13 @@
-package leetcode;public class L201BitwiseANDofNumbersRange {
+package leetcode;
+
+public class L201BitwiseANDofNumbersRange {
+    public int rangeBitwiseAnd(int left, int right) {
+        int shift = 0;
+        while(left < right) {
+            left >>= 1;
+            right >>= 1;
+            shift++;
+        }
+        return right << shift;
+    }
 }

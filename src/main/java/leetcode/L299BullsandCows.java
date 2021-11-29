@@ -1,40 +1,22 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class L299BullandCows {
+public class L299BullsandCows {
 
     public static String getHint(String secret, String guess) {
         int A = 0;
         int B = 0;
-        List<Integer>[] arr = new ArrayList[10];
-        char[] secretArr = secret.toCharArray();
-        char[] guessArr = guess.toCharArray();
+        int[] se = new int[10];
+        int[] gu = new int[10];
+        for (int i = 0; i < secret.length(); i++) {
+            if (secret.charAt(i) == guess.charAt(i)) {
+                A++;
+            } else {
+                se[secret.charAt(i) - '0']++;
+                gu[guess.charAt(i) - '0']++;
+            }
+        }
         for (int i = 0; i < 10; i++) {
-            arr[i] = new ArrayList<>();
-        }
-        for (int i = 0; i < secretArr.length; i++) {
-            arr[secretArr[i] - '0'].add(i);
-        }
-
-        for (int i = 0; i < guessArr.length; i++) {
-            if (arr[guessArr[i] - '0'].size() > 0) {
-                if (arr[guessArr[i] - '0'].indexOf((Object) i) >= 0) {
-                    arr[guessArr[i] - '0'].remove((Object) i);
-                    guessArr[i] = '*';
-                    A++;
-                }
-            }
-        }
-        for (int i = 0; i < guessArr.length; i++) {
-            if (guessArr[i] == '*') continue;
-            if (arr[guessArr[i] - '0'].size() > 0) {
-                if (arr[guessArr[i] - '0'].indexOf((Object) i) == -1) {
-                    arr[guessArr[i] - '0'].remove(arr[guessArr[i] - '0'].size() - 1);
-                    B++;
-                }
-            }
+            B += Math.min(se[i], gu[i]);
         }
 
         return new StringBuffer().append(A).append('A').append(B).append('B').toString();

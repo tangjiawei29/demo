@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class L15_3Sum {
     public List<List<Integer>> threeSum(int[] nums) {
@@ -16,10 +13,7 @@ public class L15_3Sum {
                 int target = -nums[idx], leftIdx = idx + 1, rightIdx = nums.length - 1;
                 while(leftIdx < rightIdx) {
                     if (nums[leftIdx] + nums[rightIdx] == target) {
-//                        List<Integer> l = new ArrayList<Integer>();
-//                        l.add(nums[idx]);
-//                        l.add(nums[leftIdx]);
-//                        l.add(nums[rightIdx]);
+
                         resList.add(Arrays.asList(new Integer[]{nums[idx],nums[leftIdx],nums[rightIdx]}));
                         leftIdx++;
                         while(leftIdx < rightIdx && nums[leftIdx] == nums[leftIdx - 1]) leftIdx++;

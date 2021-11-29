@@ -1,6 +1,6 @@
 package leetcode;
 
-public class L72UniquePaths {
+public class L62UniquePaths {
     public int uniquePaths(int m, int n) {
         int[][] dp =new int[m][n];
         for (int i = 0; i < m; i++) {
@@ -31,7 +31,7 @@ public class L72UniquePaths {
     }
 
     public static void main(String[] args) {
-        L72UniquePaths l = new  L72UniquePaths();
+        L62UniquePaths l = new L62UniquePaths();
         System.out.println(l.uniquePaths2(3,7));
         System.out.println(l.uniquePaths2(3,2));
 

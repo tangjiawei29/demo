@@ -1,6 +1,6 @@
 package leetcode;
 
-public class L855SpiralMatrixIII {
+public class L885SpiralMatrixIII {
     public int[][] spiralMatrixIII(int r, int c, int rr, int cc) {
         int[][] ans = new int[r * c][2];
         int idx = 0;
@@ -57,7 +57,7 @@ public class L855SpiralMatrixIII {
     }
 
     public static void main(String[] args) {
-        L855SpiralMatrixIII a = new L855SpiralMatrixIII();
+        L885SpiralMatrixIII a = new L885SpiralMatrixIII();
         int[][] aa = a.spiralMatrixIII(5, 6, 1, 4);
         for (int[] b : aa) {
             System.out.print(String.format("[%d,%d], ", b[0], b[1]));

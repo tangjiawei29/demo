@@ -53,8 +53,20 @@ public class MainProgram {
         }
         return true;
 
+    }
 
-
+    public int fib(int n) {
+        if(n<=1)
+            return n;
+        int[] a = new int[]{0,1};
+        int i=2;
+        while(i<=n){
+            int tmp = a[0]+a[1];
+            a[0] = a[1];
+            a[1] = tmp;
+            i++;
+        }
+        return a[1];
     }
 
     public static void main(String[] args) {
@@ -62,6 +74,8 @@ public class MainProgram {
 //        System.out.println(mp.lengthOfLongestSubstring("abcabcabc")+" 3");
 //        System.out.println(mp.lengthOfLongestSubstring("bbbbb")+" 1");
 //        System.out.println(mp.lengthOfLongestSubstring("au")+" 2");
-        System.out.println("aaa".substring(0,2));
+//        System.out.println("aaa".substring(0,2));
+        System.out.println(mp.fib(20));
     }
+
 }

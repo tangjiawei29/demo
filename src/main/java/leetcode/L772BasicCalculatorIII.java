@@ -3,7 +3,7 @@ package leetcode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class L770BasicCalculatorIII {
+public class L772BasicCalculatorIII {
 
     private Deque<String> getRPE(String s) {
         Deque<String> opSt = new ArrayDeque<>();
@@ -40,8 +40,6 @@ public class L770BasicCalculatorIII {
                     opSt.add(c + "");
                 }
             }
-
-
         }
         if (curNum != -1)
             rpe.add(curNum + "");
@@ -53,9 +51,28 @@ public class L770BasicCalculatorIII {
     }
 
     private int eval(Deque<String> st) {
-        int res = 0;
-        return res;
+        Deque<Integer> deque = new ArrayDeque<>();
+        while(!st.isEmpty()) {
+            String s = st.pollFirst();
+            if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
+                int n1 = deque.pollLast();
+                int n2 = deque.pollLast();
+                if (s.equals("+")) {
+                    deque.add(n2 + n1);
+                } else if (s.equals("-")) {
+                    deque.add(n2 - n1);
+                } else if (s.equals("*")) {
+                    deque.add(n2 * n1);
+                } else if (s.equals("/")) {
+                    deque.add(n2 / n1);
+                }
+            } else {
+                deque.add(Integer.valueOf(s));
+            }
+        }
+        return Integer.valueOf(deque.pollLast());
     }
+
 
     private int getPriority(char c) {
         if (c == '*' || c == '/')
@@ -64,8 +81,8 @@ public class L770BasicCalculatorIII {
     }
 
     public static void main(String[] args) {
-        L770BasicCalculatorIII l = new L770BasicCalculatorIII();
+        L772BasicCalculatorIII l = new L772BasicCalculatorIII();
         System.out.println(l.getRPE("20+(3*5/4+7*(2+3))/4)").toString());
-//        System.out.println(l.eval(l.getRPE("20+(3*5/4+7*(2+3))/4)")));
+        System.out.println(l.eval(l.getRPE("20+(3*5/4+7*(2+3))/4)")));
     }
 }

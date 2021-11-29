@@ -1,8 +1,9 @@
-package util;
+package graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class Dijkstra {
     static int max = 9999;
@@ -15,7 +16,7 @@ public class Dijkstra {
                 map[i][j] = max;
         map[1][2] = 1;
         map[1][3] = 12;
-        map[1][7] = 5;
+//        map[1][7] = 5;
         map[2][4] = 3;
         map[2][3] = 9;
         map[3][5] = 5;
@@ -23,7 +24,7 @@ public class Dijkstra {
         map[4][5] = 13;
         map[4][6] = 15;
         map[5][6] = 4;
-        map[7][6]=1;
+//        map[7][6]=1;
         int v = 1;
         int dist[] = new int[n + 1];
         int prev[] = new int[n + 1]; //记录的是源到顶点i上最短路径上的前一个顶点
@@ -33,27 +34,30 @@ public class Dijkstra {
             dist[i] = max;
             isVisited[i] = false;
         }
-        isVisited[v] = true;
+
         dist[v] = 0;
         prev[v] = 0;
-        myDijkstra(v, map, dist, prev, isVisited);
+        long t1 = System.currentTimeMillis();
+
+        myDijkstraUsingPriorityQueue(v, map, dist, prev, isVisited);
 //        Dijkstra1(v,map,dist,prev);
-        System.out.println(dist[6]);
         List<Integer> l = new ArrayList<Integer>();
         int idx = 6;
-        while(prev[idx]!=0){
+        while(prev[idx] != 0) {
             l.add(prev[idx]);
             idx = prev[idx];
         }
         Collections.reverse(l);
-        l.forEach(t-> System.out.println(t));
+        l.forEach(t -> System.out.println(t));
     }
+
 
     private static void myDijkstra(int startNode, int[][] map, int[] distance, int[] prevNode, boolean[] isVisited) {
         int n = distance.length - 1;
+        isVisited[startNode] = true;
         for (int i = 1; i <= n; i++) {
             distance[i] = map[startNode][i];
-            if(distance[i]<max){
+            if (distance[i] < max) {
                 prevNode[i] = startNode;
             }
         }
@@ -76,8 +80,50 @@ public class Dijkstra {
                     }
                 }
             }
+//            System.out.println(i+" "+idx+" "+tmpMin);
+//            for (int ij = 1; ij < distance.length; ij++) {
+//                System.out.print(distance[ij] + " ");
+//            }
+//            System.out.println("");
+//            for (int ij = 1; ij < distance.length; ij++) {
+//                System.out.print(isVisited[ij] + " ");
+//            }
+//            System.out.println("\n-----");
 
         }
+    }
+
+    static class Node {
+        int node;
+        int dis;
+
+        Node(int n, int d) {
+            node = n;
+            dis = d;
+        }
+    }
+
+    private static void myDijkstraUsingPriorityQueue(int startNode, int[][] map, int[] distance, int[] prevNode, boolean[] isVisited) {
+        int n = distance.length - 1;
+
+        PriorityQueue<Node> pq = new PriorityQueue<Node>((x,y)->x.dis-y.dis);
+        pq.offer(new Node(startNode,distance[startNode]));
+        while(!pq.isEmpty()){
+            Node node = pq.poll();
+            if (isVisited[node.node]) continue;
+            isVisited[node.node]=true;
+            for (int i = 1; i < map[node.node].length; i++) {
+                if(isVisited[i]==true) continue;
+                if(distance[i]>distance[node.node]+map[node.node][i]){
+                    distance[i] = distance[node.node]+map[node.node][i];
+                    pq.offer(new Node(i,distance[i]));
+//                    System.out.println("add Node: "+i+" "+distance[i]);
+                    prevNode[i] = node.node;
+                }
+            }
+//            System.out.println(pq.size());
+        }
+
     }
 
 

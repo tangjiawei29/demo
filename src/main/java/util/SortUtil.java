@@ -10,6 +10,6 @@ public class SortUtil {
         for (int a:arr ) {
             System.out.print(String.format("%d ",a));
         }
-        System.out.println("\n--------------");
+//        System.out.println("\n--------------");
     }
 }
