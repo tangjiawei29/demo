@@ -23,14 +23,14 @@ public class LongestPalindromicSubstring {
         return res;
     }
 
-    public boolean isPalindromic(String s){
-        if(s.isEmpty())
+    public boolean isPalindromic(String s) {
+        if (s.isEmpty()||s.length()==1)
             return true;
 
-        int mid = s.length()/2;
-        int endIdx = s.length()-1;
+        int mid = s.length() / 2;
+        int endIdx = s.length() - 1;
         for (int i = 0; i < mid; i++) {
-            if(s.charAt(i)!=s.charAt(endIdx-i)){
+            if (s.charAt(i) != s.charAt(endIdx - i)) {
                 return false;
             }
         }
